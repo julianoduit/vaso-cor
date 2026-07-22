@@ -1,0 +1,587 @@
+/* Custom Properties - Vaso e Cor Brand Colors */
+:root {
+  --cream: #fffef7;
+  --black: #000000;
+  --orange-red: #f94a23;
+  --dark-grey: #111111;
+  --light-grey: #e9e9e9;
+
+  --font-main: "Inter", sans-serif;
+  --font-heading: "Inter", sans-serif;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--light-grey);
+  color: var(--black);
+  line-height: 1.6;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.section-dark {
+  background-color: var(--black);
+  color: var(--cream);
+  padding: 5rem 0;
+}
+
+.section-orange {
+  background-color: var(--orange-red);
+  color: var(--cream);
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Logo Section */
+.logo-section {
+  padding: 2rem 0;
+  text-align: center;
+  background-color: var(--cream);
+}
+.logo-img {
+  height: 30px;
+  width: auto;
+}
+.logo-img-white {
+  height: 30px;
+  filter: brightness(0) invert(1);
+}
+.logo-img-form {
+  height: 25px;
+  filter: brightness(0) invert(1);
+  margin: 0 auto 1.5rem auto;
+  display: block;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 70vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  background: #222 url("engenharia-intro.webp") center/cover no-repeat;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+.hero-text h1 {
+  color: var(--cream);
+  font-size: clamp(4.375em, 6vw, 4rem);
+  font-weight: 600;
+  line-height: 84px;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+.hero-text h2 {
+  color: var(--cream);
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+.hero-chips {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.hero-chips .chip {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  color: var(--cream);
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+/* Specs Section */
+.specs {
+  padding: 4rem 0;
+  background-color: var(--cream);
+}
+
+.specs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  gap: 2rem;
+}
+
+.section-title {
+  font-size: 4.375em;
+  font-weight: 600;
+  margin-bottom: 0;
+  line-height: 84px;
+}
+
+.section-desc {
+  font-size: 1.125em;
+  opacity: 0.8;
+  max-width: 235px;
+  margin-bottom: 0;
+  text-align: justify;
+}
+
+.specs-carousel-wrapper {
+  overflow-x: hidden;
+  position: relative;
+  padding-bottom: 2rem;
+}
+.specs-carousel {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.5s ease;
+}
+.spec-card {
+  background-color: var(--dark-grey);
+  color: var(--cream);
+  padding: 2.5rem;
+  border-radius: 8px;
+  min-width: 320px;
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+}
+.spec-card h3 {
+  color: var(--orange-red);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+.spec-card ul {
+  list-style: none;
+  flex-grow: 1;
+}
+.spec-card ul li {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  color: #e0e0e0;
+}
+.spec-card p.note {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 1rem;
+}
+
+/* Jornada / Como Funciona */
+.how-it-works .container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+.fluxo-inline {
+  font-size: 1rem;
+  font-weight: 400;
+  vertical-align: middle;
+  line-height: normal;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.jornada-header {
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.jornada-header h2 {
+  font-size: 4.375em;
+  font-weight: 600;
+  line-height: 84px;
+  margin: 0;
+}
+
+/* Snake Timeline CSS */
+.snake-timeline {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 3rem auto;
+  position: relative;
+}
+
+.snake-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 0;
+  margin-top: -2px; /* Encaixe perfeito: sobrepõe os 2px de espessura da linha */
+  padding: 2.5rem 3rem;
+  border: none !important;
+}
+
+.snake-item:first-child {
+  margin-top: 0;
+}
+
+/* Linha reta horizontal conectando as curvas (meio do caminho) */
+.snake-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50px;
+  right: 50px;
+  height: 2px;
+  background-color: #ccc;
+  z-index: 1;
+}
+
+/* A primeira linha reta começa perto do círculo */
+.snake-item:first-child::before {
+  left: 2rem;
+}
+
+/* Blocos que desenham apenas a Curva da Direita */
+.snake-item.right::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  border: 2px solid #ccc;
+  border-left: none;
+  border-radius: 0 50px 50px 0;
+  z-index: 1;
+}
+
+/* Blocos que desenham apenas a Curva da Esquerda */
+.snake-item.left::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  border: 2px solid #ccc;
+  border-right: none;
+  border-radius: 50px 0 0 50px;
+  z-index: 1;
+}
+
+/* Linha reta horizontal para finalizar o último item */
+.snake-item.last .snake-content::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 2rem;
+  right: 50px;
+  height: 2px;
+  background-color: #ccc;
+  z-index: 1;
+}
+
+.snake-circle {
+  width: 40px;
+  height: 40px;
+  background-color: var(--black);
+  color: var(--cream);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin: 0 1.5rem 0 0;
+  z-index: 2;
+}
+
+.snake-content {
+  font-size: 0.95rem;
+  color: #444;
+  text-align: left;
+}
+
+.snake-content strong {
+  color: var(--black);
+}
+
+/* Social Proof */
+.social-proof {
+  padding: 6rem 0;
+  background-color: var(--cream);
+  overflow: hidden;
+}
+.social-title-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+.social-number {
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -3px;
+  color: var(--black);
+}
+.social-text {
+  font-size: clamp(3rem, 2vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--black);
+  letter-spacing: 2px;
+}
+
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 1rem 0;
+}
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 20s linear infinite;
+  gap: 6rem;
+  padding: 0 3rem;
+}
+.marquee:hover {
+  animation-play-state: paused;
+}
+.marquee .logo-item {
+  font-family: "Inter", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #888;
+  letter-spacing: 1.5px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* About Section */
+.about {
+  padding: 0;
+}
+.about-grid {
+  display: flex;
+  max-width: 100%;
+  padding: 0;
+}
+.about-image {
+  flex: 0 0 35%;
+  min-height: 400px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.about-content {
+  flex: 1;
+  padding: 4rem 5% 4rem 2rem;
+}
+.about-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.about-header h2 {
+  font-size: 4.375em;
+  font-weight: 600;
+  margin: 0;
+  line-height: 84px;
+}
+.about-text-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.about-text-columns p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  opacity: 0.95;
+}
+
+/* Form Section */
+.form-section {
+  padding: 6rem 0;
+  background-color: #080808;
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+.form-wrapper {
+  /* background-color: #111;
+  padding: 2.4rem;
+  border-radius: 8px; 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); */
+  width: 100%;
+  max-width: 600px;
+}
+
+.form-wrapper h2 {
+  font-size: 2.188em;
+  margin-bottom: 1.25em;
+  text-align: center;
+  color: var(--cream);
+}
+
+.form-wrapper .form-dados {
+  font-size: 0.75em;
+  font-weight: 400;
+  line-height: 1;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.form-wrapper .form-spam {
+  font-size: 0.75em;
+  font-weight: 400;
+  line-height: 1;
+  color: rgb(150, 150, 150);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.input-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #333;
+  background-color: #000;
+  color: var(--cream);
+  border-radius: 4px;
+  font-family: var(--font-main);
+}
+.input-group input:focus {
+  outline: none;
+  border-color: var(--orange-red);
+}
+.btn-submit {
+  display: block;
+  width: 100%;
+  background-color: var(--orange-red);
+  color: var(--cream);
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+.btn-submit:hover {
+  background-color: #d83e1a;
+}
+.form-message {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Footer */
+.footer {
+  background-color: #000;
+  color: #666;
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 0.85rem;
+  border-top: 1px solid #111;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .how-it-works .container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .jornada-header {
+    text-align: center; /* ou mantenha left dependendo da sua preferência no mobile */
+    margin-bottom: 2rem;
+  }
+  .about-grid {
+    flex-direction: column;
+  }
+  .about-image {
+    min-height: 250px;
+  }
+  .about-content {
+    padding: 3rem 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .specs-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .about-text-columns {
+    grid-template-columns: 1fr;
+  }
+  .social-title-flex {
+    flex-direction: column;
+    text-align: center;
+    gap: 0;
+  }
+  .snake-timeline {
+    border-left: 2px solid #ccc;
+    margin-left: 20px;
+  }
+  .snake-item {
+    border: none !important;
+    margin: 0 !important;
+    padding: 1rem 0 1rem 2rem;
+  }
+  .snake-circle {
+    position: absolute;
+    left: -20px;
+    top: 1rem;
+    margin: 0;
+  }
+}
