@@ -87,8 +87,10 @@ img {
   min-height: 600px;
   display: flex;
   align-items: center;
-  background: #222 url("engenharia-intro.webp") center/cover no-repeat;
+  background: #222 url("https://placehold.net/default.svg") center/cover
+    no-repeat;
 }
+
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -142,6 +144,10 @@ img {
   background-color: var(--cream);
 }
 
+.specs .container {
+  max-width: 1170px;
+}
+
 .specs-header {
   display: flex;
   justify-content: space-between;
@@ -171,44 +177,163 @@ img {
 }
 
 .specs-carousel-wrapper {
+  width: 100%; /* Garante preenchimento total */
   overflow-x: hidden;
   position: relative;
   padding-bottom: 2rem;
+  /* Máscara de degrade nas laterais agora aplicada nos cantos da tela toda */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
 }
+
 .specs-carousel {
   display: flex;
   gap: 1.5rem;
   transition: transform 0.5s ease;
+  /* Adiciona um padding nas laterais para que os cards não encostem de forma dura na tela quando renderizados */
+  padding: 0 1.5rem;
 }
+
 .spec-card {
+  position: relative;
   background-color: var(--dark-grey);
-  color: var(--cream);
-  padding: 2.5rem;
-  border-radius: 8px;
-  min-width: 320px;
-  flex: 0 0 320px;
+  border-radius: 12px;
+  min-width: 280px;
+  flex: 0 0 280px;
+  height: 440px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
 }
-.spec-card h3 {
-  color: var(--orange-red);
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.4) 40%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  transition: background 0.4s ease;
+  z-index: 1;
 }
-.spec-card ul {
-  list-style: none;
-  flex-grow: 1;
+
+.spec-card:hover .card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.85) 60%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
 }
-.spec-card ul li {
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
-  color: #e0e0e0;
+
+.card-icon {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
 }
-.spec-card p.note {
-  font-size: 0.8rem;
-  color: #888;
+
+.card-icon svg {
+  width: 16px;
+  height: 16px;
+  color: var(--cream);
+  transition: transform 0.3s ease;
+}
+
+.spec-card:hover .card-icon {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: var(--cream);
+}
+
+.spec-card:hover .card-icon svg {
+  transform: translate(2px, -2px);
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.card-content h3 {
+  color: var(--cream);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.card-details {
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+}
+
+.spec-card:hover .card-details {
+  max-height: 300px;
+  opacity: 1;
+  visibility: visible;
   margin-top: 1rem;
+}
+
+.card-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.card-details ul li {
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+  color: #eaeaea;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.card-details ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--orange-red);
+}
+
+.card-details p.note {
+  font-size: 0.75rem;
+  color: #b0b0b0;
+  margin-top: 1rem;
+  line-height: 1.4;
 }
 
 /* Jornada / Como Funciona */
@@ -274,7 +399,7 @@ img {
   top: 0;
   left: 50px;
   right: 50px;
-  height: 1.5px;
+  height: 1.6px;
   background-color: #ccc;
   z-index: 1;
 }
@@ -661,10 +786,41 @@ img {
   .specs-carousel-wrapper::-webkit-scrollbar {
     display: none;
   }
+  .specs-carousel {
+    padding: 0 1rem;
+    gap: 1rem;
+  }
   .spec-card {
-    min-width: 80vw;
-    flex: 0 0 80vw;
-    padding: 1.5rem;
+    min-width: 45vw;
+    flex: 0 0 45vw;
+    height: 340px;
+    padding: 0;
+  }
+  .card-content {
+    padding: 1rem;
+  }
+  .card-content h3 {
+    font-size: 0.95rem;
+    word-wrap: break-word;
+  }
+  .card-details ul li {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+    padding-left: 0.8rem;
+  }
+  .card-details p.note {
+    font-size: 0.65rem;
+    margin-top: 0.8rem;
+  }
+  .card-icon {
+    width: 26px;
+    height: 26px;
+    top: 0.6rem;
+    right: 0.6rem;
+  }
+  .card-icon svg {
+    width: 12px;
+    height: 12px;
   }
 
   /* Timeline becomes Cards */
