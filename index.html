@@ -44,6 +44,7 @@
     </div>
 
     <!-- Technical Specs -->
+    <!-- index.html (Substitua a <section class="specs"> atual por esta) -->
     <section class="specs">
       <div class="container">
         <div class="specs-header">
@@ -51,59 +52,115 @@
             ESPECIFICAÇÕES<br /><span class="italic">TÉCNICAS</span>
           </h2>
           <p class="section-desc">
-            Na Vaso & Cor, um time de Arquitetos e Engenheiros faz o
+            Na Vaso e Cor, um time de Arquitetos e Engenheiros faz o
             detalhamento das melhores soluções para sua obra.
           </p>
         </div>
+      </div> <!-- ⚠️ SEGREDO AQUI: Fechamos o .container antes do carrossel começar -->
 
-        <div class="specs-carousel-wrapper" id="specsCarouselWrapper">
-          <div class="specs-carousel" id="specsCarousel">
-            <div class="spec-card">
+      <!-- Como está fora do .container, o wrapper assume 100% da tela -->
+      <div class="specs-carousel-wrapper" id="specsCarouselWrapper">
+        <div class="specs-carousel" id="specsCarousel">
+          
+          <div class="spec-card" style="background-image: url('https://placehold.net/default.svg');">
+            <div class="card-overlay"></div>
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+            <div class="card-content">
               <h3>DRENAGEM</h3>
-              <ul>
-                <li>
-                  Mangueira flexível ou Mangueira PEX de 25mm ou de 20mm
-                  (drenagem lateral)
-                </li>
-                <li>Mangueira rígida com drenagem lateral</li>
-              </ul>
-              <p class="note">
-                *TODAS AS SOLUÇÕES SÃO ENVIADAS COM A SOLUÇÃO COMPLETA E SOBRA
-                DE MANG. DE 40CM.
-              </p>
-            </div>
-            <div class="spec-card">
-              <h3>LONGEVIDADE E ROBUSTEZ</h3>
-              <ul>
-                <li>Garantia de 10 anos na estrutura das floreiras</li>
-                <li>Reforço estrutural em aço (maior resistência mecânica)</li>
-                <li>7mm em média de espessura de fibra de vidro</li>
-              </ul>
-            </div>
-            <div class="spec-card">
-              <h3>FIXAÇÃO E COMPATIBILIDADE</h3>
-              <ul>
-                <li>Formatos, furações e fixações sob medida</li>
-                <li>Fixação em Chapa de Aço</li>
-                <li>Fixação com Cantoneira</li>
-                <li>Fixação em Clip (grampo) para Cabo de Aço</li>
-              </ul>
-            </div>
-            <div class="spec-card">
-              <h3>SUSTENTAÇÃO</h3>
-              <ul>
-                <li>Pés de Apoio para circulação de água</li>
-                <li>Rodízios</li>
-                <li>Sistema de fundo recuado em floreira</li>
-              </ul>
-            </div>
-            <div class="spec-card">
-              <h3>IRRIGAÇÃO</h3>
-              <ul>
-                <li>Flange de 20mm para irrigação.</li>
-              </ul>
+              <div class="card-details">
+                <ul>
+                  <li>Mangueira flexível ou Mangueira PEX de 25mm ou de 20mm (drenagem lateral)</li>
+                  <li>Mangueira rígida com drenagem lateral</li>
+                </ul>
+                <p class="note">*TODAS AS SOLUÇÕES SÃO ENVIADAS COM A SOLUÇÃO COMPLETA E SOBRA DE MANG. DE 40CM.</p>
+              </div>
             </div>
           </div>
+
+          <div class="spec-card" style="background-image: url('https://placehold.net/default.svg');">
+            <div class="card-overlay"></div>
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+            <div class="card-content">
+              <h3>LONGEVIDADE E ROBUSTEZ</h3>
+              <div class="card-details">
+                <ul>
+                  <li>Garantia de 10 anos na estrutura das floreiras</li>
+                  <li>Reforço estrutural em aço (maior resistência mecânica)</li>
+                  <li>7mm em média de espessura de fibra de vidro</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="spec-card" style="background-image: url('https://placehold.net/default.svg');">
+            <div class="card-overlay"></div>
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+            <div class="card-content">
+              <h3>FIXAÇÃO E COMPATIBILIDADE</h3>
+              <div class="card-details">
+                <ul>
+                  <li>Formatos, furações e fixações sob medida</li>
+                  <li>Fixação em Chapa de Aço</li>
+                  <li>Fixação com Cantoneira</li>
+                  <li>Fixação em Clip (grampo) para Cabo de Aço</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="spec-card" style="background-image: url('https://placehold.net/default.svg');">
+            <div class="card-overlay"></div>
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+            <div class="card-content">
+              <h3>SUSTENTAÇÃO</h3>
+              <div class="card-details">
+                <ul>
+                  <li>Pés de Apoio para circulação de água</li>
+                  <li>Rodízios</li>
+                  <li>Sistema de fundo recuado em floreira</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="spec-card" style="background-image: url('https://placehold.net/default.svg');">
+            <div class="card-overlay"></div>
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+            <div class="card-content">
+              <h3>IRRIGAÇÃO</h3>
+              <div class="card-details">
+                <ul>
+                  <li>Flange de 20mm para irrigação.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -202,7 +259,9 @@
       <div class="container about-grid">
         <div
           class="about-image"
-          style="background-image: url(&quot;sobre-image.webp&quot;)"
+          style="
+            background-image: url(&quot;https://placehold.net/default.svg&quot;);
+          "
         ></div>
         <div class="about-content">
           <div class="about-text-columns">
