@@ -65,18 +65,23 @@ img {
   text-align: center;
   background-color: var(--cream);
 }
+
 .logo-img {
-  height: 30px;
+  height: 40px;
   width: auto;
+  margin-bottom: 32px;
+  filter: brightness(0) invert(1);
 }
+
 .logo-img-white {
   height: 30px;
   filter: brightness(0) invert(1);
 }
-.logo-img-form {
-  height: 25px;
+
+.logo-img-footer {
+  height: 40px;
   filter: brightness(0) invert(1);
-  margin: 0 auto 1.5rem auto;
+  margin: 0 auto 40px auto;
   display: block;
 }
 
@@ -120,9 +125,6 @@ img {
   margin-bottom: 2rem;
   max-width: 500px;
 }
-.hero-text h1 span.italic {
-  font-style: italic;
-}
 .hero-chips {
   display: flex;
   gap: 1rem;
@@ -138,9 +140,19 @@ img {
   backdrop-filter: blur(5px);
 }
 
+.hero-keywords {
+  margin-top: 2rem;
+  color: var(--cream);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
 /* Specs Section */
 .specs {
-  padding: 4rem 0;
+  padding: 8rem 0;
   background-color: var(--cream);
 }
 
@@ -152,13 +164,8 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 3rem;
+  margin-bottom: 8rem;
   gap: 2rem;
-}
-
-.specs-header h2 span.italic {
-  margin-left: -8px;
-  font-style: italic;
 }
 
 .section-title {
@@ -177,11 +184,10 @@ img {
 }
 
 .specs-carousel-wrapper {
-  width: 100%; /* Garante preenchimento total */
+  width: 100%;
   overflow-x: hidden;
   position: relative;
   padding-bottom: 2rem;
-  /* Máscara de degrade nas laterais agora aplicada nos cantos da tela toda */
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
@@ -202,7 +208,6 @@ img {
   display: flex;
   gap: 1.5rem;
   transition: transform 0.5s ease;
-  /* Adiciona um padding nas laterais para que os cards não encostem de forma dura na tela quando renderizados */
   padding: 0 1.5rem;
 }
 
@@ -365,11 +370,6 @@ img {
   margin: 0;
 }
 
-.jornada-header h2 span.italic {
-  margin-left: -8px;
-  font-style: italic;
-}
-
 /* Snake Timeline CSS */
 .snake-timeline {
   display: flex;
@@ -490,7 +490,6 @@ img {
   line-height: 0.97;
   letter-spacing: -3px;
   color: var(--black);
-  font-style: italic;
 }
 .social-text {
   font-size: clamp(3rem, 2vw, 1.5rem);
@@ -517,11 +516,26 @@ img {
   animation-play-state: paused;
 }
 .marquee .logo-item {
-  font-family: "Inter", sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #888;
-  letter-spacing: 1.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marquee .logo-item img {
+  height: 50px; /* Ajuste a altura conforme a necessidade das suas logos */
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition:
+    filter 0.3s ease,
+    opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.marquee .logo-item:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
 }
 
 @keyframes marquee {
@@ -671,7 +685,7 @@ img {
   background-color: #000;
   color: #666;
   text-align: center;
-  padding: 2rem 0;
+  padding: 2.5rem 0;
   font-size: 0.85rem;
   border-top: 1px solid #111;
 }
@@ -686,7 +700,7 @@ img {
     gap: 3rem;
   }
   .jornada-header {
-    text-align: center;
+    text-align: left;
     margin-bottom: 2rem;
   }
   .about-grid {
@@ -726,38 +740,46 @@ img {
   /* Hero */
   .hero {
     min-height: auto;
-    padding: 6rem 0;
     background-attachment: scroll;
   }
   .hero-content {
-    text-align: center;
+    text-align: left;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
   }
   .hero-text h1,
   .section-title,
   .jornada-header h2,
   .about-header h2 {
-    font-size: clamp(1.8rem, 7vw, 2.5rem) !important;
+    font-size: clamp(2.3rem, 7vw, 2.5rem) !important;
     line-height: 1.15;
     word-break: break-word;
     hyphens: auto;
   }
   .hero-text h2 {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-bottom: 2rem;
     max-width: 100%;
-    text-align: center;
+    text-align: left;
   }
   .hero-chips {
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0.8rem;
   }
   .hero-chips .chip {
-    font-size: 0.85rem;
-    padding: 0.5rem 1.2rem;
+    font-size: 0.68rem;
+    padding: 0.5rem 0.8rem;
+  }
+  .hero-keywords {
+    margin-top: 2rem;
+    color: var(--cream);
+    font-size: 0.61rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.8;
   }
 
   /* Specs */
@@ -766,13 +788,14 @@ img {
   }
   .specs-header {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 4rem;
     gap: 1.5rem;
   }
   .section-desc {
     max-width: 100%;
-    text-align: center;
+    text-align: justify;
     font-size: 1rem;
   }
   .specs-carousel-wrapper {
@@ -800,7 +823,7 @@ img {
     padding: 1rem;
   }
   .card-content h3 {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     word-wrap: break-word;
   }
   .card-details ul li {
@@ -826,6 +849,7 @@ img {
   /* Timeline becomes Cards */
   .how-it-works .container {
     gap: 2rem;
+    padding-top: 6rem;
   }
   .snake-timeline {
     border: none;
@@ -842,6 +866,14 @@ img {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+  .fluxo-inline {
+    font-size: 0.75rem;
+    font-weight: 400;
+    vertical-align: middle;
+    line-height: normal;
+    display: inline-block;
+    text-transform: uppercase;
   }
   .snake-item::before,
   .snake-item::after,
@@ -865,9 +897,6 @@ img {
     padding: 4rem 0;
   }
   .social-title-flex {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
     margin-bottom: 3rem;
   }
   .social-number {
@@ -899,8 +928,8 @@ img {
     width: 100%;
   }
   .about-header {
-    justify-content: center;
-    text-align: center;
+    justify-content: flex-start;
+    text-align: left;
   }
   .about-text-columns {
     grid-template-columns: 1fr;
@@ -920,7 +949,7 @@ img {
     max-width: 100%;
   }
   .form-wrapper h2 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
   .input-group input {
     padding: 0.9rem;
