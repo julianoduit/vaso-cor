@@ -26,7 +26,7 @@ body {
   font-family: var(--font-main);
   background-color: var(--light-grey);
   color: var(--black);
-  line-height: 1.6;
+  line-height: 1.7;
   font-size: 16px;
   overflow-x: hidden;
   max-width: 100vw;
@@ -148,6 +148,38 @@ img {
   letter-spacing: 2px;
   text-transform: uppercase;
   opacity: 0.8;
+}
+
+.btn-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: max-content;
+  height: 40px;
+  padding: 0 30px;
+  font-weight: 700;
+  font-size: 1em;
+  line-height: 19.2px;
+  color: var(--cream);
+  border: 0;
+  box-sizing: border-box;
+  border-radius: 0;
+  background-color: var(--black);
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-cta:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgb(255 255 255 / 0.2);
+}
+
+.hero-cta {
+  margin-top: 2rem;
 }
 
 /* Specs Section */
@@ -341,6 +373,16 @@ img {
   line-height: 1.4;
 }
 
+.specs-cta-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.specs-cta-container .btn-cta:hover {
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.2);
+}
+
 /* Jornada / Como Funciona */
 .how-it-works .container {
   display: grid;
@@ -473,7 +515,6 @@ img {
 
 /* Social Proof */
 .social-proof {
-  padding: 6rem 0;
   background-color: var(--cream);
   overflow: hidden;
 }
@@ -548,96 +589,74 @@ img {
 }
 
 /* About Section */
-.about {
-  padding: 0;
+.section-content {
   position: relative;
+  background-color: #f94a23;
+  padding: 100px 0;
   overflow: hidden;
 }
 
-.about-grid {
-  display: flex;
-  max-width: 100%;
-  padding: 0;
-  align-items: self-end;
-}
-
-.about-image-wrapper {
-  flex: 0 0 35%;
-  position: relative;
-  z-index: 1;
-}
-
-.about-image {
-  width: 100%;
-  height: 100%;
-  min-height: 500px;
-  background-position: center left;
-  background-size: cover;
-  background-repeat: no-repeat;
-  -webkit-clip-path: url(#rounded-diagonal-clip);
-  clip-path: url(#rounded-diagonal-clip);
-  filter: grayscale(100%) contrast(1.2);
-}
-
-.about-image-wrapper::after {
+.section-content::before {
   content: "";
   position: absolute;
-  top: 0;
-  right: -5px;
   bottom: 0;
-  width: 20%;
-  background-color: var(--orange-red);
-  z-index: -1;
+  left: 0;
+  width: 422px;
+  height: 592px;
+  background-image: url("engenharia-content.webp");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom left;
+  z-index: 1;
+  pointer-events: none;
 }
 
-.about-content {
-  flex: 1;
-  padding: 4rem 4rem 4rem 2rem;
+.section-content > div {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 2;
 }
 
-.about-header {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
+.section-content .content-container {
+  max-width: 720px;
+  width: 100%;
 }
 
-.about-header h2 {
-  font-size: 3rem;
-  font-weight: 500;
-  margin: 0;
-  line-height: 1;
-  letter-spacing: 1px;
+.section-content .content-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 50px;
 }
 
-.about-logo {
-  height: 40px;
-  width: auto;
-  filter: brightness(0) invert(1);
+img {
+  max-width: 100%;
 }
 
-.about-text-columns {
+.section-content .content-text {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 100px;
+  text-align: justify;
 }
 
-.about-text-columns p {
+.section-content .content-text > div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section-content .content-text p {
   font-size: 0.875em;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  opacity: 0.95;
-  color: var(--cream);
   font-weight: 400;
+  line-height: 24px;
+  color: #fff;
 }
 
 /* Form Section */
 .form-section {
-  padding: 6rem 0;
+  padding: 8rem 0;
   background-color: var(--cream);
 }
 .form-container {
@@ -645,10 +664,6 @@ img {
   justify-content: center;
 }
 .form-wrapper {
-  /* background-color: #111;
-  padding: 2.4rem;
-  border-radius: 8px; 
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); */
   width: 100%;
   max-width: 600px;
 }
@@ -696,24 +711,24 @@ img {
 }
 .input-group input:focus {
   outline: none;
-  border-color: var(--orange-red);
+  border-color: var(--black);
 }
 .btn-submit {
   display: block;
   width: 100%;
-  background-color: var(--orange-red);
+  background-color: var(--black);
   color: var(--cream);
   padding: 1rem;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 1rem;
 }
 .btn-submit:hover {
-  background-color: #d83e1a;
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgb(000 000 000 / 0.2);
 }
 .form-message {
   margin-top: 1rem;
@@ -737,6 +752,14 @@ img {
   .container {
     padding: 0 2rem;
   }
+  .section-content::before {
+    display: none;
+  }
+  .section-content .content-text {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
   .how-it-works .container {
     grid-template-columns: 1fr;
     gap: 3rem;
@@ -745,20 +768,9 @@ img {
     text-align: left;
     margin-bottom: 2rem;
   }
-  .about-grid {
-    flex-direction: column;
-    padding: 0;
-  }
-  .about-image {
-    min-height: 400px;
-  }
-  .about-content {
-    padding: 4rem 2rem;
-  }
   .hero-text h1,
   .section-title,
-  .jornada-header h2,
-  .about-header h2 {
+  .jornada-header h2 {
     font-size: clamp(2.5rem, 5vw, 4rem);
     line-height: 1.1;
     word-break: break-word;
@@ -793,8 +805,7 @@ img {
   }
   .hero-text h1,
   .section-title,
-  .jornada-header h2,
-  .about-header h2 {
+  .jornada-header h2 {
     font-size: clamp(2.3rem, 7vw, 2.5rem) !important;
     line-height: 1.15;
     word-break: break-word;
@@ -958,31 +969,6 @@ img {
   }
   .marquee .logo-item {
     font-size: 1rem;
-  }
-
-  /* About */
-  .about-image {
-    min-height: 300px;
-    width: 100%;
-  }
-  .about-content {
-    padding: 3rem 1.5rem;
-    width: 100%;
-  }
-  .about-image-wrapper{
-    display: none
-  }
-  .about-header {
-    justify-content: flex-start;
-    text-align: left;
-  }
-  .about-text-columns {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    width: 100%;
-  }
-  .about-text-columns p {
-    font-size: 0.95rem;
   }
 
   /* Form */
