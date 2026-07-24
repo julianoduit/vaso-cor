@@ -969,6 +969,9 @@ img {
     padding: 3rem 1.5rem;
     width: 100%;
   }
+  .about-image-wrapper{
+    display: none
+  }
   .about-header {
     justify-content: flex-start;
     text-align: left;
