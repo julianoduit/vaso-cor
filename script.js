@@ -28,6 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Click nos cards de especificações
+  document.body.addEventListener("click", (e) => {
+    if (e.target.closest(".spec-card")) {
+      const formSection = document.getElementById("contato");
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  });
+
   // Auto-scroll for specs carousel
   const carouselWrapper = document.getElementById("specsCarouselWrapper");
   const carousel = document.getElementById("specsCarousel");
@@ -37,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     carousel.innerHTML += carousel.innerHTML;
 
     const scrollStep = 1;
-    const scrollIntervalTime = 15;
+    const scrollIntervalTime = 30;
     let isHovered = false;
 
     carouselWrapper.addEventListener("mouseenter", () => (isHovered = true));
