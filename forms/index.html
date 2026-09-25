@@ -7,15 +7,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --cream: #fdfcf7;
-        --cream-mark: #fbf3ea;
-        --ink: #171717;
-        --orange: #f04e23;
+        --cream: #fffef7;
+        --ink: #070707;
+        --orange: #f94a23;
         --white: #ffffff;
         --muted: #bdbdbd;
       }
@@ -78,13 +77,13 @@
         margin-bottom: 28px;
       }
       .headline {
-        font-family: "Playfair Display", serif;
+        font-family: "Libre Caslon Text", serif;
         font-style: italic;
         font-weight: 400;
         color: var(--orange);
         font-size: clamp(34px, 3.6vw, 52px);
         line-height: 1.05;
-        letter-spacing: -0.01em;
+        letter-spacing: -0.02em;
       }
       .lead {
         margin-top: 22px;
@@ -133,27 +132,11 @@
         padding: 24px 16px;
         overflow: hidden;
       }
-      .watermark {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: "Inter", sans-serif;
-        font-weight: 500;
-        font-size: 58vw;
-        letter-spacing: -0.06em;
-        color: var(--cream-mark);
-        line-height: 1;
-        user-select: none;
-        pointer-events: none;
-        padding-top: 12vw;
-      }
       .card {
         position: relative;
         z-index: 1;
         width: 100%;
-        max-width: 600px;
+        max-width: 526px;
         background: var(--ink);
         color: var(--white);
         border-radius: 28px;
@@ -172,11 +155,34 @@
       }
       .progress {
         position: absolute;
-        top: 22px;
+        top: 25px;
         left: 52px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .progress .count {
+        margin-left: 8px;
         font-size: 11px;
         letter-spacing: 0.08em;
         color: #8a8a8a;
+        font-variant-numeric: tabular-nums;
+      }
+      .progress .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: #6f6f6f;
+        transition:
+          width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+          background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .progress .dot.done {
+        background: var(--white);
+      }
+      .progress .dot.current {
+        width: 18px;
+        background: var(--orange);
       }
       .question {
         display: none;
@@ -203,7 +209,7 @@
         font-weight: 500;
         line-height: 1.35;
         margin: 0 0 18px;
-        max-width: 440px;
+        max-width: 400px;
       }
       .field {
         width: 100%;
@@ -270,7 +276,7 @@
         margin-top: -2px;
       }
 
-      /* Satisfação (emojis) */
+      /* Satisfação (ícones) */
       .satisfaction {
         position: relative;
         display: grid;
@@ -302,22 +308,40 @@
         padding: 0 4px;
       }
       .satisfaction .emoji {
-        font-size: 24px;
         width: 36px;
         height: 36px;
         display: grid;
         place-items: center;
         border-radius: 50%;
         background: var(--ink);
+        color: var(--white);
         transition:
           transform 0.2s,
-          box-shadow 0.2s;
+          color 0.2s;
+      }
+      .satisfaction .emoji svg {
+        width: 32px;
+        height: 32px;
+        display: block;
+      }
+      .satisfaction .emoji .face {
+        fill: currentColor;
+      }
+      .satisfaction .emoji .feat {
+        fill: var(--ink);
+        stroke: var(--ink);
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .satisfaction .emoji .line {
+        fill: none;
       }
       .satisfaction button:hover .emoji {
         transform: scale(1.15);
       }
       .satisfaction button.selected .emoji {
-        box-shadow: 0 0 0 3px var(--orange);
+        color: var(--orange);
         transform: scale(1.2);
       }
       .satisfaction button.selected span:last-child {
@@ -417,9 +441,6 @@
           height: 34px;
           margin-top: 0;
         }
-        .watermark {
-          font-size: 90vw;
-        }
       }
       @media (max-width: 520px) {
         .satisfaction {
@@ -441,6 +462,9 @@
           font-size: 14px;
           text-align: left;
           padding: 0;
+        }
+        .satisfaction br {
+          display: none;
         }
       }
       @media (max-width: 420px) {
@@ -477,10 +501,15 @@
 
     <!-- PERGUNTAS -->
     <section id="perguntas" class="screen">
-      <div class="watermark" aria-hidden="true">V&amp;C</div>
-
       <form class="card" id="form" novalidate>
-        <span class="progress" id="progress">1 / 5</span>
+        <div
+          class="progress"
+          id="progress"
+          role="progressbar"
+          aria-valuemin="1"
+          aria-valuemax="5"
+          aria-valuenow="1"
+        ></div>
         <svg class="card-icon" viewBox="0 0 18 12" aria-hidden="true">
           <path d="M0 0l6 6-6 6zM6 0l6 6-6 6zM12 0l6 6-6 6z" fill="#F04E23" />
         </svg>
@@ -501,7 +530,7 @@
         <!-- 2 -->
         <div class="question" data-step="2">
           <p class="q" id="q2">
-            Qual a probabilidade de recomendar a Vaso e Cor a um colega ou
+            Qual a probabilidade de recomendar<br />a Vaso e Cor a um colega ou
             amigo?
           </p>
           <div
@@ -581,11 +610,31 @@
 
       const TOTAL = 5;
       const SATISFACAO = [
-        { emoji: "😟", label: "Muito insatisfeito" },
-        { emoji: "😕", label: "Relativamente insatisfeito" },
-        { emoji: "😐", label: "Nem satisfeito nem insatisfeito" },
-        { emoji: "😃", label: "Relativamente satisfeito" },
-        { emoji: "🤩", label: "Muito satisfeito" },
+        {
+          icon: '<circle class="feat" cx="11" cy="13" r="1.4"/><circle class="feat" cx="21" cy="13" r="1.4"/><path class="feat line" d="M8.5 9.5 12.5 8M23.5 9.5 19.5 8"/><path class="feat line" d="M10.5 23q5.5-5 11 0"/>',
+          label: "Muito insatisfeito",
+          html: "Muito<br> insatisfeito",
+        },
+        {
+          icon: '<circle class="feat" cx="11" cy="13" r="1.4"/><circle class="feat" cx="21" cy="13" r="1.4"/><path class="feat line" d="M11 22q5-3 10 0"/>',
+          label: "Relativamente insatisfeito",
+          html: "Relativamente<br> insatisfeito",
+        },
+        {
+          icon: '<circle class="feat" cx="11" cy="13" r="1.4"/><circle class="feat" cx="21" cy="13" r="1.4"/><path class="feat line" d="M11 21h10"/>',
+          label: "Nem satisfeito nem insatisfeito",
+          html: "Nem satisfeito<br> nem insatisfeito",
+        },
+        {
+          icon: '<circle class="feat" cx="11" cy="13" r="1.4"/><circle class="feat" cx="21" cy="13" r="1.4"/><path class="feat line" d="M10.5 19.5q5.5 5 11 0"/>',
+          label: "Relativamente satisfeito",
+          html: "Relativamente<br> satisfeito",
+        },
+        {
+          icon: '<path class="feat line" d="M9 13.5q2-2.5 4 0M19 13.5q2-2.5 4 0"/><path class="feat" d="M9.5 18.5h13q0 6-6.5 6t-6.5-6z"/>',
+          label: "Muito satisfeito",
+          html: "Muito<br> satisfeito",
+        },
       ];
 
       const answers = {
@@ -638,7 +687,7 @@
         b.type = "button";
         b.setAttribute("role", "radio");
         b.setAttribute("aria-checked", "false");
-        b.innerHTML = `<span class="emoji" aria-hidden="true">${opt.emoji}</span><span>${opt.label}</span>`;
+        b.innerHTML = `<span class="emoji" aria-hidden="true"><svg viewBox="0 0 32 32"><circle class="face" cx="16" cy="16" r="15"/>${opt.icon}</svg></span><span>${opt.html}</span>`;
         b.addEventListener("click", () => {
           answers.satisfacao = opt.label;
           sat.querySelectorAll("button").forEach((x) => {
@@ -672,7 +721,19 @@
         document
           .querySelectorAll(".question")
           .forEach((q) => q.classList.toggle("active", +q.dataset.step === n));
-        $("#progress").textContent = `${n} / ${TOTAL}`;
+        const progress = $("#progress");
+        if (!progress.children.length) {
+          progress.innerHTML =
+            '<span class="dot"></span>'.repeat(TOTAL) +
+            '<span class="count" aria-hidden="true"></span>';
+        }
+        progress.querySelectorAll(".dot").forEach((d, i) => {
+          d.classList.toggle("current", i + 1 === n);
+          d.classList.toggle("done", i + 1 < n);
+        });
+        progress.querySelector(".count").textContent = `${n}/${TOTAL}`;
+        progress.setAttribute("aria-valuenow", n);
+        progress.setAttribute("aria-label", `Pergunta ${n} de ${TOTAL}`);
         card.classList.toggle("wide", n === 4);
         nextBtn.textContent = n === TOTAL ? "Enviar" : "Próximo";
         backBtn.hidden = n === 1;
@@ -691,7 +752,10 @@
         }
         if (step === 2 && answers.nota == null)
           return "Selecione uma nota de 1 a 10.";
-        if (step === 3) answers.motivo = $("#motivo").value.trim();
+        if (step === 3) {
+          answers.motivo = $("#motivo").value.trim();
+          if (!answers.motivo) return "Conte pra gente o motivo da sua nota.";
+        }
         if (step === 4 && !answers.satisfacao) return "Selecione uma opção.";
         if (step === 5) answers.comentario = $("#comentario").value.trim();
         return "";
