@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pesquisa de Satisfação | Vaso&amp;Cor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --cream: #fdfcf7;
+        --cream-mark: #fbf3ea;
+        --ink: #171717;
+        --orange: #f04e23;
+        --white: #ffffff;
+        --muted: #bdbdbd;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        background: var(--cream);
+        color: var(--ink);
+        font-family: "Inter", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      .screen {
+        display: none;
+        min-height: 100vh;
+        min-height: 100dvh;
+      }
+      .screen.active {
+        display: flex;
+        animation: fade 0.45s ease;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* ---------- Capa e Final (layout dividido) ---------- */
+      .split {
+        flex-direction: row;
+      }
+      .split .photo {
+        flex: 0 0 62%;
+        background-size: cover;
+        background-position: center;
+      }
+      .split .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 48px 7vw 48px 64px;
+      }
+      .brand {
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 17px;
+        letter-spacing: -0.01em;
+        margin-bottom: 28px;
+      }
+      .headline {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-weight: 400;
+        color: var(--orange);
+        font-size: clamp(34px, 3.6vw, 52px);
+        line-height: 1.05;
+        letter-spacing: -0.01em;
+      }
+      .lead {
+        margin-top: 22px;
+        font-size: 15px;
+        line-height: 1.5;
+        max-width: 360px;
+      }
+      .btn-dark {
+        align-self: flex-start;
+        margin-top: 26px;
+        background: var(--ink);
+        color: var(--white);
+        border: 0;
+        border-radius: 999px;
+        padding: 11px 26px;
+        font:
+          500 14px "Inter",
+          sans-serif;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn-dark:hover {
+        background: var(--orange);
+      }
+      .btn-dark:active {
+        transform: scale(0.97);
+      }
+
+      #capa .photo {
+        background-image: url("images/Foto-Capa.jpg");
+        background-position: left center;
+      }
+      #final .photo {
+        background-image: url("images/foto-final.jpg");
+        background-position: center 60%;
+      }
+
+      /* ---------- Perguntas ---------- */
+      #perguntas {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 16px;
+        overflow: hidden;
+      }
+      .watermark {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 58vw;
+        letter-spacing: -0.06em;
+        color: var(--cream-mark);
+        line-height: 1;
+        user-select: none;
+        pointer-events: none;
+        padding-top: 12vw;
+      }
+      .card {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 600px;
+        background: var(--ink);
+        color: var(--white);
+        border-radius: 28px;
+        padding: 48px 52px 36px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+      }
+      .card.wide {
+        max-width: 760px;
+      }
+      .card-icon {
+        position: absolute;
+        top: 22px;
+        right: 24px;
+        width: 18px;
+        height: 12px;
+      }
+      .progress {
+        position: absolute;
+        top: 22px;
+        left: 52px;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        color: #8a8a8a;
+      }
+      .question {
+        display: none;
+      }
+      .question.active {
+        display: block;
+        animation: slide 0.35s ease;
+      }
+      @keyframes slide {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .question label.q,
+      .question .q {
+        display: block;
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 1.35;
+        margin: 0 0 18px;
+        max-width: 440px;
+      }
+      .field {
+        width: 100%;
+        border: 0;
+        border-radius: 999px;
+        background: var(--white);
+        color: var(--ink);
+        padding: 11px 18px;
+        font:
+          15px "Inter",
+          sans-serif;
+        outline: none;
+        transition: box-shadow 0.2s;
+      }
+      textarea.field {
+        border-radius: 18px;
+        resize: none;
+        min-height: 44px;
+        height: 44px;
+        line-height: 1.45;
+        overflow: hidden;
+      }
+      .field:focus {
+        box-shadow: 0 0 0 3px rgba(240, 78, 35, 0.55);
+      }
+
+      .error {
+        min-height: 18px;
+        margin-top: 8px;
+        font-size: 12.5px;
+        color: #ff8a6b;
+      }
+
+      /* Escala 1-10 */
+      .scale {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .scale button {
+        width: 36px;
+        height: 34px;
+        border: 0;
+        border-radius: 4px;
+        background: var(--white);
+        color: var(--ink);
+        font:
+          500 15px "Inter",
+          sans-serif;
+        cursor: pointer;
+        transition:
+          background 0.15s,
+          color 0.15s,
+          transform 0.15s;
+      }
+      .scale button:hover {
+        transform: translateY(-2px);
+      }
+      .scale button.selected {
+        background: var(--orange);
+        color: var(--white);
+        width: 40px;
+        height: 38px;
+        margin-top: -2px;
+      }
+
+      /* Satisfação (emojis) */
+      .satisfaction {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        margin: 30px -20px 0;
+      }
+      .satisfaction::before {
+        content: "";
+        position: absolute;
+        top: 17px;
+        left: 10%;
+        right: 10%;
+        height: 2px;
+        background: #9a9a9a;
+      }
+      .satisfaction button {
+        position: relative;
+        background: none;
+        border: 0;
+        color: var(--white);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        font:
+          500 12px/1.25 "Inter",
+          sans-serif;
+        padding: 0 4px;
+      }
+      .satisfaction .emoji {
+        font-size: 24px;
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--ink);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .satisfaction button:hover .emoji {
+        transform: scale(1.15);
+      }
+      .satisfaction button.selected .emoji {
+        box-shadow: 0 0 0 3px var(--orange);
+        transform: scale(1.2);
+      }
+      .satisfaction button.selected span:last-child {
+        color: var(--orange);
+      }
+
+      .actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 14px;
+        gap: 10px;
+      }
+      .btn-light {
+        background: var(--white);
+        color: var(--ink);
+        border: 0;
+        border-radius: 999px;
+        padding: 8px 22px;
+        font:
+          500 13px "Inter",
+          sans-serif;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .btn-light:hover {
+        background: var(--orange);
+        color: var(--white);
+      }
+      .btn-light:disabled {
+        opacity: 0.6;
+        cursor: wait;
+      }
+      .btn-back {
+        background: none;
+        color: #9a9a9a;
+        border: 0;
+        font:
+          500 13px "Inter",
+          sans-serif;
+        cursor: pointer;
+        padding: 8px 10px;
+      }
+      .btn-back:hover {
+        color: var(--white);
+      }
+      .btn-back[hidden] {
+        display: none;
+      }
+
+      button:focus-visible,
+      .field:focus-visible {
+        outline: 2px solid var(--orange);
+        outline-offset: 2px;
+      }
+
+      /* ---------- Mobile ---------- */
+      @media (max-width: 820px) {
+        .split {
+          flex-direction: column;
+        }
+        .split .photo {
+          flex: 0 0 46vh;
+        }
+        .split .content {
+          padding: 36px 24px 48px;
+        }
+        #capa .photo {
+          background-position: 75% 15%;
+        }
+        #final .photo {
+          background-position: center 70%;
+        }
+        .card {
+          padding: 48px 24px 28px;
+          border-radius: 22px;
+        }
+        .progress {
+          left: 24px;
+        }
+        .satisfaction {
+          margin: 26px -12px 0;
+        }
+        .satisfaction button {
+          font-size: 10.5px;
+        }
+        .scale {
+          gap: 5px;
+        }
+        .scale button {
+          width: calc((100% - 45px) / 10);
+          min-width: 0;
+        }
+        .scale button.selected {
+          width: calc((100% - 45px) / 10);
+          height: 34px;
+          margin-top: 0;
+        }
+        .watermark {
+          font-size: 90vw;
+        }
+      }
+      @media (max-width: 520px) {
+        .satisfaction {
+          grid-template-columns: 1fr;
+          gap: 6px;
+          margin: 4px 0 8px;
+        }
+        .satisfaction::before {
+          top: 18px;
+          bottom: 18px;
+          left: 17px;
+          right: auto;
+          width: 2px;
+          height: auto;
+        }
+        .satisfaction button {
+          flex-direction: row;
+          gap: 14px;
+          font-size: 14px;
+          text-align: left;
+          padding: 0;
+        }
+      }
+      @media (max-width: 420px) {
+        .scale {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 6px;
+        }
+        .scale button,
+        .scale button.selected {
+          width: 100%;
+          height: 38px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- CAPA -->
+    <section id="capa" class="screen split active">
+      <div
+        class="photo"
+        role="img"
+        aria-label="Profissional trabalhando no escritório"
+      ></div>
+      <div class="content">
+        <h1 class="headline">Queremos saber<br />a sua opinião!</h1>
+        <p class="lead">
+          São apenas 5 perguntas, leva 1 minuto para responder a pesquisa
+          completa.
+        </p>
+        <button class="btn-dark" id="start">INICIAR AGORA</button>
+      </div>
+    </section>
+
+    <!-- PERGUNTAS -->
+    <section id="perguntas" class="screen">
+      <div class="watermark" aria-hidden="true">V&amp;C</div>
+
+      <form class="card" id="form" novalidate>
+        <span class="progress" id="progress">1 / 5</span>
+        <svg class="card-icon" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M0 0l6 6-6 6zM6 0l6 6-6 6zM12 0l6 6-6 6z" fill="#F04E23" />
+        </svg>
+
+        <!-- 1 -->
+        <div class="question" data-step="1">
+          <label class="q" for="email">Qual o seu e-mail?</label>
+          <input
+            class="field"
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="email"
+            inputmode="email"
+          />
+        </div>
+
+        <!-- 2 -->
+        <div class="question" data-step="2">
+          <p class="q" id="q2">
+            Qual a probabilidade de recomendar a Vaso e Cor a um colega ou
+            amigo?
+          </p>
+          <div
+            class="scale"
+            role="radiogroup"
+            aria-labelledby="q2"
+            id="nota"
+          ></div>
+        </div>
+
+        <!-- 3 -->
+        <div class="question" data-step="3">
+          <label class="q" for="motivo">Por que você deu esta nota?</label>
+          <textarea class="field" id="motivo" name="motivo" rows="1"></textarea>
+        </div>
+
+        <!-- 4 -->
+        <div class="question" data-step="4">
+          <p class="q" id="q4">
+            De modo geral, qual é o seu grau de satisfação com o atendimento do
+            nosso time comercial?
+          </p>
+          <div
+            class="satisfaction"
+            role="radiogroup"
+            aria-labelledby="q4"
+            id="satisfacao"
+          ></div>
+        </div>
+
+        <!-- 5 -->
+        <div class="question" data-step="5">
+          <label class="q" for="comentario"
+            >Você tem algum outro comentário, dúvida ou sugestão?</label
+          >
+          <textarea
+            class="field"
+            id="comentario"
+            name="comentario"
+            rows="1"
+          ></textarea>
+        </div>
+
+        <p class="error" id="error" role="alert"></p>
+
+        <div class="actions">
+          <button type="button" class="btn-back" id="back" hidden>
+            Voltar
+          </button>
+          <button type="submit" class="btn-light" id="next">Próximo</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- FINAL -->
+    <section id="final" class="screen split">
+      <div
+        class="photo"
+        role="img"
+        aria-label="Plantas em vasos Vaso&Cor"
+      ></div>
+      <div class="content">
+        <div class="brand">vaso&amp;cor</div>
+        <h2 class="headline">Muito obrigada!</h2>
+        <p class="lead">A sua opinião é muito importante para nós.</p>
+      </div>
+    </section>
+
+    <script>
+      /* ================= CONFIGURAÇÃO =================
+     Cole aqui a URL do Web App do Google Apps Script
+     (veja o arquivo apps-script.gs). Se ficar vazio,
+     as respostas só aparecem no console do navegador. */
+      const ENDPOINT =
+        "https://script.google.com/macros/s/AKfycbwk7VBFK5vnQNpJR4VnPMEBZBa3BIwsSKz4-PJOOdbPz75YBbV1lun_JPkN3V0wFXg/exec";
+      /* ================================================ */
+
+      const TOTAL = 5;
+      const SATISFACAO = [
+        { emoji: "😟", label: "Muito insatisfeito" },
+        { emoji: "😕", label: "Relativamente insatisfeito" },
+        { emoji: "😐", label: "Nem satisfeito nem insatisfeito" },
+        { emoji: "😃", label: "Relativamente satisfeito" },
+        { emoji: "🤩", label: "Muito satisfeito" },
+      ];
+
+      const answers = {
+        email: "",
+        nota: null,
+        motivo: "",
+        satisfacao: null,
+        comentario: "",
+      };
+      let step = 1;
+
+      const $ = (s) => document.querySelector(s);
+      const form = $("#form");
+      const errorEl = $("#error");
+      const nextBtn = $("#next");
+      const backBtn = $("#back");
+      const card = form;
+
+      function show(id) {
+        document
+          .querySelectorAll(".screen")
+          .forEach((s) => s.classList.toggle("active", s.id === id));
+        window.scrollTo(0, 0);
+      }
+
+      // Escala 1-10
+      const scale = $("#nota");
+      for (let i = 1; i <= 10; i++) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.textContent = i;
+        b.setAttribute("role", "radio");
+        b.setAttribute("aria-checked", "false");
+        b.addEventListener("click", () => {
+          answers.nota = i;
+          scale.querySelectorAll("button").forEach((x) => {
+            const on = x === b;
+            x.classList.toggle("selected", on);
+            x.setAttribute("aria-checked", on);
+          });
+          errorEl.textContent = "";
+        });
+        scale.appendChild(b);
+      }
+
+      // Satisfação
+      const sat = $("#satisfacao");
+      SATISFACAO.forEach((opt) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("role", "radio");
+        b.setAttribute("aria-checked", "false");
+        b.innerHTML = `<span class="emoji" aria-hidden="true">${opt.emoji}</span><span>${opt.label}</span>`;
+        b.addEventListener("click", () => {
+          answers.satisfacao = opt.label;
+          sat.querySelectorAll("button").forEach((x) => {
+            const on = x === b;
+            x.classList.toggle("selected", on);
+            x.setAttribute("aria-checked", on);
+          });
+          errorEl.textContent = "";
+        });
+        sat.appendChild(b);
+      });
+
+      // Textareas crescem com o texto
+      document.querySelectorAll("textarea.field").forEach((t) => {
+        t.addEventListener("input", () => {
+          t.style.height = "44px";
+          t.style.height = Math.min(t.scrollHeight, 160) + "px";
+          t.style.overflowY = t.scrollHeight > 160 ? "auto" : "hidden";
+        });
+        // Enter envia, Shift+Enter quebra linha
+        t.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            form.requestSubmit();
+          }
+        });
+      });
+
+      function goTo(n) {
+        step = n;
+        document
+          .querySelectorAll(".question")
+          .forEach((q) => q.classList.toggle("active", +q.dataset.step === n));
+        $("#progress").textContent = `${n} / ${TOTAL}`;
+        card.classList.toggle("wide", n === 4);
+        nextBtn.textContent = n === TOTAL ? "Enviar" : "Próximo";
+        backBtn.hidden = n === 1;
+        errorEl.textContent = "";
+        const focusable = document.querySelector(
+          `.question[data-step="${n}"] .field`,
+        );
+        if (focusable) setTimeout(() => focusable.focus(), 50);
+      }
+
+      function validate() {
+        if (step === 1) {
+          answers.email = $("#email").value.trim();
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(answers.email))
+            return "Informe um e-mail válido.";
+        }
+        if (step === 2 && answers.nota == null)
+          return "Selecione uma nota de 1 a 10.";
+        if (step === 3) answers.motivo = $("#motivo").value.trim();
+        if (step === 4 && !answers.satisfacao) return "Selecione uma opção.";
+        if (step === 5) answers.comentario = $("#comentario").value.trim();
+        return "";
+      }
+
+      async function submit() {
+        const payload = { ...answers, data: new Date().toISOString() };
+        console.log("Resposta da pesquisa:", payload);
+        if (!ENDPOINT) return;
+        // text/plain evita preflight CORS no Apps Script
+        await fetch(ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload),
+        });
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const err = validate();
+        if (err) {
+          errorEl.textContent = err;
+          return;
+        }
+
+        if (step < TOTAL) {
+          goTo(step + 1);
+          return;
+        }
+
+        nextBtn.disabled = true;
+        nextBtn.textContent = "Enviando...";
+        try {
+          await submit();
+          show("final");
+        } catch (ex) {
+          console.error(ex);
+          errorEl.textContent =
+            "Não foi possível enviar. Verifique sua conexão e tente novamente.";
+          nextBtn.textContent = "Enviar";
+        } finally {
+          nextBtn.disabled = false;
+        }
+      });
+
+      backBtn.addEventListener("click", () => {
+        validate();
+        goTo(step - 1);
+      });
+
+      $("#start").addEventListener("click", () => {
+        show("perguntas");
+        goTo(1);
+      });
+    </script>
+  </body>
+</html>
