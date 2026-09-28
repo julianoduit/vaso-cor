@@ -137,6 +137,43 @@
         color: var(--orange);
       }
 
+      /* Desktop: textos acompanham a largura da tela, na mesma proporção
+         da foto. --u = 1% da largura (mínimo 9.6px em telas menores). */
+      @media (min-width: 821px) {
+        .split {
+          --u: max(1vw, 9.6px);
+        }
+        .split .content {
+          padding: calc(var(--u) * 3.4) 7vw calc(var(--u) * 3.4)
+            calc(var(--u) * 4.6);
+        }
+        .brand {
+          width: calc(var(--u) * 7.9);
+          margin-bottom: calc(var(--u) * 2);
+        }
+        .headline {
+          font-size: calc(var(--u) * 3.6);
+        }
+        .lead {
+          margin-top: calc(var(--u) * 1.6);
+          font-size: calc(var(--u) * 1.07);
+          max-width: calc(var(--u) * 26);
+        }
+        .btn-dark {
+          margin-top: calc(var(--u) * 1.85);
+          padding: calc(var(--u) * 0.8) calc(var(--u) * 1.85);
+          font-size: calc(var(--u) * 1);
+        }
+        .legal {
+          left: calc(var(--u) * 4.6);
+          bottom: calc(var(--u) * 2.3);
+          font-size: calc(var(--u) * 0.8);
+        }
+        .legal p + p {
+          margin-top: calc(var(--u) * 0.4);
+        }
+      }
+
       #capa .photo {
         background-image: url("forms/images/inicio.png");
       }
@@ -516,7 +553,7 @@
         <button class="btn-dark" id="start">INICIAR AGORA</button>
         <footer class="legal">
           <p>
-            Ao clicar em PROSSEGUIR você automaticamente concorda com os
+            Ao clicar em INICIAR AGORA você automaticamente concorda com os
             <a
               href="https://www.vasoecor.com.br/politicas-de-privacidade/"
               target="_blank"
