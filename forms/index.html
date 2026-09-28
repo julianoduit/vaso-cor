@@ -60,7 +60,6 @@
       .split .photo {
         flex: 0 0 62%;
         background-size: cover;
-        background-position: center;
       }
       .split .content {
         flex: 1;
@@ -70,10 +69,9 @@
         padding: 48px 7vw 48px 64px;
       }
       .brand {
-        font-family: "Inter", sans-serif;
-        font-weight: 600;
-        font-size: 17px;
-        letter-spacing: -0.01em;
+        display: block;
+        width: 110px;
+        height: auto;
         margin-bottom: 28px;
       }
       .headline {
@@ -116,12 +114,11 @@
       }
 
       #capa .photo {
-        background-image: url("forms/images/inicio.jpg");
-        background-position: left center;
+        background-image: url("images/inicio.png");
       }
       #final .photo {
-        background-image: url("forms/images/final.jpg");
-        background-position: center 60%;
+        background-image: url("images/final.png");
+        background-position: center 90%;
       }
 
       /* ---------- Perguntas ---------- */
@@ -150,8 +147,8 @@
         position: absolute;
         top: 22px;
         right: 24px;
-        width: 18px;
-        height: 12px;
+        width: 16px;
+        height: 16px;
       }
       .progress {
         position: absolute;
@@ -160,13 +157,6 @@
         display: flex;
         align-items: center;
         gap: 5px;
-      }
-      .progress .count {
-        margin-left: 8px;
-        font-size: 11px;
-        letter-spacing: 0.08em;
-        color: #8a8a8a;
-        font-variant-numeric: tabular-nums;
       }
       .progress .dot {
         width: 6px;
@@ -510,9 +500,12 @@
           aria-valuemax="5"
           aria-valuenow="1"
         ></div>
-        <svg class="card-icon" viewBox="0 0 18 12" aria-hidden="true">
-          <path d="M0 0l6 6-6 6zM6 0l6 6-6 6zM12 0l6 6-6 6z" fill="#F04E23" />
-        </svg>
+        <img
+          class="card-icon"
+          src="images/elemento-recortado.png"
+          alt=""
+          aria-hidden="true"
+        />
 
         <!-- 1 -->
         <div class="question" data-step="1">
@@ -593,7 +586,11 @@
         aria-label="Plantas em vasos Vaso&Cor"
       ></div>
       <div class="content">
-        <div class="brand">vaso&amp;cor</div>
+        <img
+          class="brand"
+          src="images/logo-preto-recortado.png"
+          alt="vaso&amp;cor"
+        />
         <h2 class="headline">Muito obrigada!</h2>
         <p class="lead">A sua opinião é muito importante para nós.</p>
       </div>
@@ -723,15 +720,12 @@
           .forEach((q) => q.classList.toggle("active", +q.dataset.step === n));
         const progress = $("#progress");
         if (!progress.children.length) {
-          progress.innerHTML =
-            '<span class="dot"></span>'.repeat(TOTAL) +
-            '<span class="count" aria-hidden="true"></span>';
+          progress.innerHTML = '<span class="dot"></span>'.repeat(TOTAL);
         }
         progress.querySelectorAll(".dot").forEach((d, i) => {
           d.classList.toggle("current", i + 1 === n);
           d.classList.toggle("done", i + 1 < n);
         });
-        progress.querySelector(".count").textContent = `${n}/${TOTAL}`;
         progress.setAttribute("aria-valuenow", n);
         progress.setAttribute("aria-label", `Pergunta ${n} de ${TOTAL}`);
         card.classList.toggle("wide", n === 4);
@@ -747,16 +741,16 @@
       function validate() {
         if (step === 1) {
           answers.email = $("#email").value.trim();
+          if (!answers.email) return "Campo obrigatório";
           if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(answers.email))
             return "Informe um e-mail válido.";
         }
-        if (step === 2 && answers.nota == null)
-          return "Selecione uma nota de 1 a 10.";
+        if (step === 2 && answers.nota == null) return "Campo obrigatório";
         if (step === 3) {
           answers.motivo = $("#motivo").value.trim();
-          if (!answers.motivo) return "Conte pra gente o motivo da sua nota.";
+          if (!answers.motivo) return "Campo obrigatório";
         }
-        if (step === 4 && !answers.satisfacao) return "Selecione uma opção.";
+        if (step === 4 && !answers.satisfacao) return "Campo obrigatório";
         if (step === 5) answers.comentario = $("#comentario").value.trim();
         return "";
       }
