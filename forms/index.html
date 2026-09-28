@@ -113,6 +113,30 @@
         transform: scale(0.97);
       }
 
+      #capa .content {
+        position: relative;
+      }
+      .legal {
+        position: absolute;
+        left: 64px;
+        right: 7vw;
+        bottom: 32px;
+        font-size: 11px;
+        line-height: 1.5;
+        color: #6b6b6b;
+      }
+      .legal p + p {
+        margin-top: 6px;
+      }
+      .legal a {
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .legal a:hover {
+        color: var(--orange);
+      }
+
       #capa .photo {
         background-image: url("forms/images/inicio.png");
       }
@@ -400,6 +424,10 @@
         .split .content {
           padding: 36px 24px 48px;
         }
+        .legal {
+          position: static;
+          margin-top: 40px;
+        }
         #capa .photo {
           background-position: 75% 15%;
         }
@@ -486,6 +514,25 @@
           completa.
         </p>
         <button class="btn-dark" id="start">INICIAR AGORA</button>
+        <footer class="legal">
+          <p>
+            Ao clicar em PROSSEGUIR você automaticamente concorda com os
+            <a
+              href="https://www.vasoecor.com.br/politicas-de-privacidade/"
+              target="_blank"
+              rel="noopener"
+              >termos de uso</a
+            >
+            e
+            <a
+              href="https://www.vasoecor.com.br/politicas-de-privacidade/"
+              target="_blank"
+              rel="noopener"
+              >política de privacidade</a
+            >.
+          </p>
+          <p>© Copyright 2026 Vaso e Cor</p>
+        </footer>
       </div>
     </section>
 
